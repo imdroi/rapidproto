@@ -6,4 +6,4 @@
     alt="imdroi logo"
   />
 </div>
-<div>Message: {{ hello$ | async | json }}</div>
+<div *ngFor='let hello of hellos$ | async'>Message: {{ hello | json }}</div>

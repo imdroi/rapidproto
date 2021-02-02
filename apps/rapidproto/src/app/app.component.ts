@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { WelcomeMessageService } from './welcome-message.service';
+import { Observable } from 'rxjs';
 import { Message } from '@rapidproto/api-interfaces';
 
 @Component({
@@ -7,7 +8,19 @@ import { Message } from '@rapidproto/api-interfaces';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  hello$ = this.http.get<Message>('/api/hello');
-  constructor(private http: HttpClient) {}
+export class AppComponent implements OnInit {
+
+  public readonly hellos$: Observable<Message[]> = this.welcomeMessageService.entities$
+
+  public constructor(
+    private welcomeMessageService : WelcomeMessageService
+  ) {}
+
+  public ngOnInit(): void {
+    this.publicLoadMessages();
+  }
+
+  public publicLoadMessages(): void {
+    this.welcomeMessageService.getAll();
+  }
 }
