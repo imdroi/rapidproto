@@ -1,6 +1,9 @@
 {
   "root": true,
-  "ignorePatterns": ["**/*"],
+  "ignorePatterns": [
+    "**/*",
+    "README.md"
+  ],
   "plugins": [
     "@nrwl/nx",
     "@typescript-eslint"
