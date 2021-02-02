@@ -16,7 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@rapidproto/api-interfaces": ["libs/api-interfaces/src/index.ts"]
-    }
+    },
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -1,1 +1,8 @@
-{ "extends": "../../.eslintrc.json", "ignorePatterns": ["!**/*", "jest.config.js"], "rules": {} }
+{ "extends": "../../.eslintrc.json", "ignorePatterns": ["!**/*", "jest.config.js"],
+  "rules": {
+    "@typescript-eslint/explicit-member-accessibility": "error",
+    "@typescript-eslint/no-explicit-any": "error",
+    "no-console": "error",
+    "no-alert": "error"
+    }
+}

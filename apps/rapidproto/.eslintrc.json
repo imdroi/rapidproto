@@ -20,7 +20,9 @@
         "@angular-eslint/component-selector": [
           "error",
           { "type": "element", "prefix": "rapidproto", "style": "kebab-case" }
-        ]
+        ],
+        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/explicit-member-accessibility": "error"
       }
     },
     {

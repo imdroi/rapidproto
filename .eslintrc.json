@@ -1,7 +1,10 @@
 {
   "root": true,
   "ignorePatterns": ["**/*"],
-  "plugins": ["@nrwl/nx"],
+  "plugins": [
+    "@nrwl/nx",
+    "@typescript-eslint"
+  ],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -15,14 +18,23 @@
               { "sourceTag": "*", "onlyDependOnLibsWithTags": ["*"] }
             ]
           }
-        ]
+        ],
+        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/explicit-member-accessibility": "error",
+        "no-console": "error",
+        "no-alert": "error"
       }
     },
     {
       "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nrwl/nx/typescript"],
+      "extends": [
+        "plugin:@nrwl/nx/typescript",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+      ],
       "parserOptions": { "project": "./tsconfig.*?.json" },
-      "rules": {}
+      "rules": {
+      }
     },
     {
       "files": ["*.js", "*.jsx"],
