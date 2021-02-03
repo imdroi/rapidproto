@@ -9,6 +9,8 @@
 // ***********************************************
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
+import { Logger } from '@nestjs/common';
+
 declare namespace Cypress {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface Chainable<Subject> {
@@ -18,7 +20,7 @@ declare namespace Cypress {
 //
 // -- This is a parent command --
 Cypress.Commands.add('login', (email, password) => {
-  console.log('Custom command example: Login', email, password);
+  Logger.debug('Custom command example: Login', email, password);
 });
 //
 // -- This is a child command --

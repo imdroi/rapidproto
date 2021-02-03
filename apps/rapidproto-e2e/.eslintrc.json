@@ -1,7 +1,9 @@
 {
   "extends": ["plugin:cypress/recommended", "../../.eslintrc.json"],
   "ignorePatterns": ["!**/*"],
-  "rules": {},
+  "rules": {
+    "@typescript-eslint/no-namespace": "off"
+  },
   "overrides": [
     {
       "files": ["src/plugins/index.js"],

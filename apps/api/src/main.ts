@@ -18,4 +18,6 @@ async function bootstrap() {
   });
 }
 
-bootstrap();
+bootstrap().catch(
+  (err) => Logger.error(err)
+);
