@@ -1,9 +1,18 @@
 <div style="text-align: center">
-  <h1>Welcome to rapidproto!</h1>
+  <h1 class='mat-h1'>Welcome to rapidproto!</h1>
   <img
     width="450"
     src="assets/imdroi_logo_rgb_web.svg"
     alt="imdroi logo"
   />
 </div>
-<div *ngFor='let hello of hellos$ | async'>Message: {{ hello | json }}</div>
+<div fxLayout="row wrap" fxLayoutAlign="space-between" fxLayout.lt-sm='column'  fxLayoutAlign.lt-sm="space-around center" fxLayoutGap="10px">
+  <button
+    *ngFor='let hello of hellos$ | async'
+    mat-flat-button
+    color="accent"
+    (click)='openSnackBar(hello.message, "OK")'
+  >
+    {{ hello.message }}
+  </button>
+</div>
