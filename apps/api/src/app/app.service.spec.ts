@@ -14,8 +14,11 @@ describe('AppService', () => {
   });
 
   describe('getData', () => {
-    it('should return "Welcome to api!"', () => {
-      expect(service.getData()).toEqual({ message: 'Welcome to api!' });
+    it('should return 2 Messages', () => {
+      expect(service.getData()).toEqual([
+        {"id": "1", "message": "Welcome to rapid proto api!"},
+        {"id": "2", "message": "This is an example of fast prototyping"}
+        ]);
     });
   });
 });

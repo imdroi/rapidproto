@@ -1,12 +1,23 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
+import { WelcomeMessageService } from './welcome-message.service';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MockProvider } from 'ng-mocks';
 
 describe('AppComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [AppComponent],
-      imports: [HttpClientModule],
+      schemas: [
+        NO_ERRORS_SCHEMA,
+      ],
+      declarations: [
+        AppComponent
+      ],
+      providers: [
+        MockProvider(WelcomeMessageService),
+        MockProvider(MatSnackBar)
+      ],
     }).compileComponents();
   }));
 
