@@ -6,19 +6,18 @@ FROM node:14-alpine as build
 WORKDIR /app
 
 # Copy only package json to avoid a complete rebuild, when only sources have changed
-COPY ["package.json", "nx.json", "decorate-angular-cli.js", "angular.json", "jest.config.js", "jest.preset.js", ".eslintrc.json", "tsconfig.base.json", "/app/"]
+COPY ["package.json", "package-lock.json", "nx.json","decorate-angular-cli.js", "/app/"]
 
 # Install Angular CLI --unsafe-perm because we are root and pug installation fails otherwise
-RUN npm install --unsafe-perm --allow-root --legacy-peer-deps
+RUN npm ci --unsafe-perm --legacy-peer-deps --allow-root
 
 # Installing app source into image
-COPY ["./apps/rapidproto", "/app/apps/rapidproto"]
-COPY ["./libs", "/app/libs"]
-COPY ["./tools","/app/tools"]
+COPY [".", "/app/"]
 
 # add `/app/node_modules/.bin` to $PATH
 ENV PATH /app/node_modules/.bin:$PATH
 
+# build the web app
 RUN npm run build --prod --unsafe-perm --allow-root
 
 
