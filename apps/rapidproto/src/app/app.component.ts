@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { WelcomeMessageService } from './welcome-message.service';
 import { Observable } from 'rxjs';
 import { Message } from '@rapidproto/api-interfaces';
@@ -15,8 +15,13 @@ export class AppComponent implements OnInit {
 
   public constructor(
     private readonly welcomeMessageService : WelcomeMessageService,
-    private readonly _snackBar: MatSnackBar
-  ) {}
+    private readonly _snackBar: MatSnackBar,
+    @Inject('BACKEND_API_ROOT')
+    private readonly backendUrl: string,
+  ) {
+    // eslint-disable-next-line no-console
+    console.log('BACKEND_API_ROOT:', backendUrl);
+  }
 
   public ngOnInit(): void {
     this.publicLoadMessages();

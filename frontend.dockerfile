@@ -29,8 +29,14 @@ RUN rm -rf /usr/share/nginx/html/*
 COPY --from=build /app/dist/apps/rapidproto /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
+RUN echo "mainFileName=\"\$(ls /usr/share/nginx/html/main*.js)\" && \
+          envsubst '\$BACKEND_API_HOST \$BACKEND_API_PORT \$BACKEND_API_PREFIX \$BACKEND_API_TIMEOUT' < \${mainFileName} > main.tmp && \
+          mv main.tmp \${mainFileName} && nginx -g 'daemon off;'" > run.sh
+
+RUN chmod +x run.sh
+
 # Exposing ports
 EXPOSE 80
 
 # Starting server
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["./run.sh", "-g", "daemon off;"]

@@ -11,10 +11,19 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { environment } from '../environments/environment';
 
 const defaultDataServiceConfig: DefaultDataServiceConfig = {
-  root: 'http://localhost:3333/api',
-  timeout: 3000, // request timeout
+  root: `${
+    environment.backendApiHost
+  }:${
+    environment.backendApiPort
+  }${
+    !environment.backendApiPrefix?.startsWith('/') ? '/' : ''
+  }${
+    environment.backendApiPrefix
+  }`,
+  timeout: Number(environment.backendApiTimeout), // request timeout
 }
 
 @NgModule({
@@ -33,7 +42,13 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     MatSnackBarModule
   ],
   providers: [
-    { provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig }
+    /**
+     * Provide environment variables here in app.module.ts instead
+     * of using them elsewhere directly!
+     */
+    { provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig },
+    { provide: 'BACKEND_API_ROOT', useValue: defaultDataServiceConfig.root },
+    { provide: 'BACKEND_API_TIMEOUT', useValue: Number(environment.backendApiTimeout) },
   ],
   bootstrap: [AppComponent],
 })

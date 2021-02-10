@@ -4,6 +4,13 @@
 
 export const environment = {
   production: false,
+
+  // call the api with http://localhost:3333/api
+  backendApiHost: 'http://localhost',
+  backendApiPort: '3333',
+  backendApiPrefix: 'api',
+
+  backendApiTimeout: '3000'
 };
 
 /*
