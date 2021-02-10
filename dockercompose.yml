@@ -22,5 +22,7 @@ services:
       dockerfile: backend.dockerfile
     environment:
       - NODE_ENV=production
+      - PORT=3334
+      - GLOBAL_PREFIX=api
     ports:
-      - "3333:3333"
+      - "3333:3334"

@@ -18,7 +18,9 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,

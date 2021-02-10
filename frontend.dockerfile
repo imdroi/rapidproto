@@ -18,7 +18,7 @@ COPY [".", "/app/"]
 ENV PATH /app/node_modules/.bin:$PATH
 
 # build the web app
-RUN npm run build --prod --unsafe-perm --allow-root
+RUN npm run build:prod
 
 
 ## Stage 1: serve app with nginx server
